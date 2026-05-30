@@ -1,99 +1,47 @@
-/* Estilos globales para la plataforma de Gestión de Domicilios Maicao */
+/* ==========================================================================
+   CSS OPTIMIZADO - PLATAFORMA MAICAO
+   ========================================================================== */
+
+/* 1. RESET Y ANIMACIONES */
+* { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
+
+@keyframes aparecer { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; } }
+
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #f4f6f9;
-    color: #333;
-    margin: 0;
-    padding: 20px;
+    background: linear-gradient(rgba(244, 246, 249, 0.3), rgba(244, 246, 249, 0.3)), url('../../iimg/Gemini_Generated_Image_m3ot5wm3ot5wm3ot.png') center/cover fixed;
+    padding: 20px; min-height: 100vh;
 }
 
-h1, h2, h3 {
-    color: #2c3e50;
+/* 2. ESTRUCTURA Y NAVEGACIÓN */
+.nav-pruebas, .contenedor { 
+    max-width: 600px; margin: 10px auto; animation: aparecer 0.6s ease-out both; 
 }
 
-/* Contenedor principal de tarjetas */
-.contenedor {
-    max-width: 600px;
-    background: #ffffff;
-    margin: 20px auto;
-    padding: 25px;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+.nav-pruebas { background: rgba(255, 255, 255, 0.75); backdrop-filter: blur(5px); padding: 14px; border-radius: 8px; text-align: center; border: 1px solid rgba(255, 255, 255, 0.4); }
+.nav-pruebas a { margin: 0 15px; color: #2c3e50; font-weight: bold; text-decoration: none; transition: 0.2s; }
+.nav-pruebas a:hover { color: #3498db; }
+
+.contenedor { background: rgba(255, 255, 255, 0.96); padding: 30px; border-radius: 12px; box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08); }
+
+/* 3. FORMULARIOS (ESTILOS AGRUPADOS) */
+.grupo-formulario { margin-bottom: 20px; }
+.grupo-formulario label { display: block; font-weight: 600; color: #4a5568; margin-bottom: 8px; transition: 0.2s; }
+
+input, select {
+    width: 100%; padding: 12px; border: 1px solid #cbd5e1; border-radius: 8px; background: #f8fafc; outline: none; transition: 0.2s;
 }
 
-/* Formularios estructurados */
-.grupo-formulario {
-    margin-bottom: 15px;
-}
+.grupo-formulario:focus-within label { color: #2ecc71; transform: translateX(3px); }
+input:focus, select:focus { border-color: #2ecc71; box-shadow: 0 0 12px rgba(46, 204, 113, 0.15); background: #fff; transform: translateX(3px); }
 
-.grupo-formulario label {
-    display: block;
-    margin-bottom: 5px;
-    font-weight: 600;
-}
+/* 4. COMPONENTES Y BOTONES */
+#listaProductos { background: #fff; padding: 15px; border-radius: 8px; border: 1px dashed #2ecc71; border-left: 4px solid #2ecc71; transition: 0.3s; }
+#listaProductos:hover { box-shadow: 0 6px 18px rgba(46, 204, 113, 0.15); transform: translateY(-2px); }
 
-.grupo-formulario input, .grupo-formulario select {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-sizing: border-box;
-}
+.btn { width: 100%; padding: 14px; font-weight: bold; color: #fff; border: none; border-radius: 8px; cursor: pointer; transition: 0.3s; margin-top: 10px; }
+.btn { background: #3498db; }
+.btn-exito { background: #2ecc71; }
+.btn:hover { filter: brightness(0.9); }
+.btn:active { transform: scale(0.98); }
 
-/* Botones interactivos */
-.btn {
-    background-color: #3498db;
-    color: white;
-    border: none;
-    padding: 12px 20px;
-    font-size: 16px;
-    border-radius: 4px;
-    cursor: pointer;
-    width: 100%;
-    font-weight: bold;
-    transition: background 0.3s ease;
-}
-
-.btn:hover {
-    background-color: #2980b9;
-}
-
-.btn-exito {
-    background-color: #2ecc71;
-}
-
-.btn-exito:hover {
-    background-color: #27ae60;
-}
-
-/* Alertas de Respuesta del Servidor */
-.json-alerta {
-    background-color: #e8f4f8;
-    border-left: 5px solid #3498db;
-    padding: 10px;
-    margin-top: 15px;
-    font-family: monospace;
-    white-space: pre-wrap;
-    font-size: 13px;
-}
-
-/* Lista de productos en el carrito */
-.item-carrito {
-    display: flex;
-    justify-content: space-between;
-    padding: 10px 0;
-    border-bottom: 1px solid #eee;
-}
-
-/* Menú de navegación de prueba */
-.nav-pruebas {
-    text-align: center;
-    margin-bottom: 30px;
-}
-
-.nav-pruebas a {
-    margin: 0 10px;
-    color: #3498db;
-    text-decoration: none;
-    font-weight: bold;
-}
+.json-alerta { background: #e8f4f8; border-left: 5px solid #3498db; padding: 12px; margin-top: 15px; font-family: monospace; font-size: 13px; color: #234e65; }
