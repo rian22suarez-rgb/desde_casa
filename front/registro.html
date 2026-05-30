@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Prueba de Registro - Domicilios Maicao</title>
+    <link rel="stylesheet" href="css/estilos.css">
+</head>
+<body>
+
+    <nav class="nav-pruebas">
+        <a href="index.html">Catálogo e Interfaz de Compra</a> | 
+        <a href="registro.html">Módulo Registro</a>
+    </nav>
+
+    <div class="contenedor">
+        <h2>Módulo de Registro de Clientes</h2>
+        <p>Pruebe el almacenamiento dinámico directamente en la base de datos <strong>desde_casa</strong>.</p>
+        
+        <form id="formRegistro">
+            <div class="grupo-formulario">
+                <label>Nombre Completo:</label>
+                <input type="text" id="regNombre" required placeholder="Ej. Mateo Carrillo">
+            </div>
+            <div class="grupo-formulario">
+                <label>Teléfono de Contacto:</label>
+                <input type="text" id="regTelefono" required placeholder="Ej. 3001234567">
+            </div>
+            <div class="grupo-formulario">
+                <label>Correo Electrónico:</label>
+                <input type="email" id="regEmail" required placeholder="correo@ejemplo.com">
+            </div>
+            <div class="grupo-formulario">
+                <label>Contraseña de Acceso:</label>
+                <input type="password" id="regContrasena" required placeholder="••••••••">
+            </div>
+            <div class="grupo-formulario">
+                <label>Método de Pago Preferido:</label>
+                <select id="regPago">
+                    <option value="Efectivo">Efectivo</option>
+                    <option value="Nequi">Nequi</option>
+                    <option value="Daviplata">Daviplata</option>
+                </select>
+            </div>
+            
+            <button type="submit" class="btn">Registrar Usuario en MySQL</button>
+        </form>
+
+        <h3>Respuesta de Node.js:</h3>
+        <div id="resultadoRegistro" class="json-alerta">Esperando acción...</div>
+    </div>
+
+    <script>
+        document.getElementById('formRegistro').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const payload = {
+                nombre: document.getElementById('regNombre').value,
+                telefono: document.getElementById('regTelefono').value,
+                email: document.getElementById('regEmail').value,
+                contrasena: document.getElementById('regContrasena').value,
+                metodoPago: document.getElementById('regPago').value
+            };
+
+            try {
+                const respuesta = await fetch('/api/usuarios', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+                const data = await respuesta.json();
+                document.getElementById('resultadoRegistro').innerText = JSON.stringify(data, null, 2);
+            } catch (error) {
+                document.getElementById('resultadoRegistro').innerText = "Error de conexión: " + error.message;
+            }
+        });
+    </script>
+</body>
+</html>
